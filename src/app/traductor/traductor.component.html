@@ -1,0 +1,63 @@
+<div class="container">
+  <h1 class="text-center mb-5 text-primary display-3 fw-bold">Traductor</h1>
+
+  <form>
+    <div class="row gap-3 mb-3">
+      <select
+        class="form-select col"
+        name="source"
+        [(ngModel)]="traduccionRequest.source"
+      >
+        <option value="it">Italiano</option>
+        <option value="fr">Frances</option>
+        <option value="en">Ingles</option>
+        <option value="es" selected>Español</option>
+      </select>
+
+      <select
+        class="form-select col"
+        name="target"
+        [(ngModel)]="traduccionRequest.target"
+      >
+        <option value="it">Italiano</option>
+        <option value="fr">Frances</option>
+        <option value="en" selected>Ingles</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+
+    <div class="row mb-3">
+      <div class="form-floating col-12 p-0">
+        <input
+          type="text"
+          class="form-control"
+          id="query"
+          name="query"
+          placeholder="Hello world!"
+          [(ngModel)]="traduccionRequest.q"
+        />
+        <label for="query">Texto a traducir</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <button
+        type="button"
+        class="btn btn-primary col-12"
+        (click)="enviar()"
+        [disabled]="cargando"
+      >
+        {{ cargando ? "Cargando..." : "Traducir" }}
+      </button>
+    </div>
+  </form>
+
+  @if (resultado) {
+  <div class="row mt-5">
+    <div class="alert alert-info">
+      <p class="fw-bold">Traduccion:</p>
+      <p>{{ resultado }}</p>
+    </div>
+  </div>
+  }
+</div>
