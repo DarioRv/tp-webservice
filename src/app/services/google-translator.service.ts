@@ -31,17 +31,4 @@ export class GoogleTranslatorService {
       headers,
     });
   }
-
-  getLanguages(): Observable<any> {
-    const url =
-      'https://google-translate1.p.rapidapi.com/language/translate/v2/languages';
-
-    const headers = new HttpHeaders({
-      'Accept-Encoding': 'application/gzip',
-      'X-RapidAPI-Key': 'd5958d7e67mshed5cdfa08c6a56bp14686bjsn051dc6ddbe7a',
-      'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com',
-    });
-
-    return this.http.get(url, { headers });
-  }
 }
