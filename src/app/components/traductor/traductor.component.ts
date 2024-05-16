@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { TraduccionRequest } from '../models/traduccion-request.model';
+import { TraduccionRequest } from '../../models/traduccion-request.model';
 import { FormsModule } from '@angular/forms';
-import { GoogleTranslatorService } from '../services/google-translator.service';
+import { GoogleTranslatorService } from '../../services/google-translator.service';
 
 @Component({
   selector: 'app-traductor',

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TraductorComponent } from './traductor/traductor.component';
-import { PortalNoticiasComponent } from './portal-noticias/portal-noticias.component';
+import { TraductorComponent } from './components/traductor/traductor.component';
+import { PortalNoticiasComponent } from './components/portal-noticias/portal-noticias.component';
 import { LayoutPageComponent } from './layouts/layout-page/layout-page.component';
 
 export const routes: Routes = [
