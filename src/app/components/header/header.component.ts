@@ -17,5 +17,6 @@ export class HeaderComponent {
   menuItems: MenuItem[] = [
     { label: 'Traductor', routerLink: 'traductor' },
     { label: 'Noticias', routerLink: 'noticias' },
+    { label: 'Vehículos', routerLink: 'vehiculos' },
   ];
 }

@@ -1,0 +1,71 @@
+<section>
+  <h1 class="text-center mb-5 text-primary display-3 fw-bold">Modelos</h1>
+  @if (cargando) {
+  <div class="d-flex justify-content-center gap-3 align-items-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <span>Cargando marcas</span>
+  </div>
+  } @else {
+  <div class="row row-cols-2 row-cols-md-4 gap-3 justify-content-center">
+    @for (marca of marcas; track $index) {
+    <button
+      class="border rounded fs-1 text-center fw-bold"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      (click)="onSelectMarca(marca.id)"
+    >
+      {{ marca.name }}
+    </button>
+    }
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modelos</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            @if (!cargandoModelos) {
+            <ul class="list-group">
+              @for (modelo of modelos; track $index) {
+              <li class="list-group-item">{{ modelo.name }}</li>
+              }
+            </ul>
+            } @else {
+            <div class="d-flex justify-content-center gap-3 align-items-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+              <span>Cargando modelos</span>
+            </div>
+            }
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</section>
