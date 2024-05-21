@@ -1,0 +1,56 @@
+<!-- <audio [src]="audioUrl" controls></audio> -->
+<section>
+  <h2>Texto a audio</h2>
+
+  <div class="historial border rounded p-4">
+    @for (item of historial; track $index) {
+    <div
+      class="d-flex mb-4"
+      [ngClass]="{
+        'justify-content-end': $index % 2 === 0,
+        'justify-content-start': $index % 2 !== 0
+      }"
+    >
+      @if ($index % 2 === 0) {
+      <p
+        class="m-0 px-3 py-2 rounded text-white"
+        style="width: fit-content"
+        [ngClass]="{
+        'bg-primary': $index % 2 === 0,
+        'bg-warning': $index % 2 !== 0,
+      }"
+      >
+        {{ item }}
+      </p>
+      } @else {
+      <audio [src]="item" controls></audio>
+      }
+    </div>
+    } @empty {
+    <div class="alert alert-info">No hay historial</div>
+    }
+  </div>
+  <form class="d-flex align-items-center gap-3 mt-5">
+    <textarea
+      class="form-control"
+      [(ngModel)]="text"
+      name="text"
+      placeholder="Escribe algo..."
+      style="max-height: 200px"
+    ></textarea>
+    <button
+      class="btn btn-primary"
+      [disabled]="cargando"
+      (click)="requestAudio()"
+    >
+      @if (cargando) {
+      <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+
+      } @else {
+      <i class="bi bi-send"></i>
+      }
+    </button>
+  </form>
+</section>

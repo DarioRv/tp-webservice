@@ -18,5 +18,6 @@ export class HeaderComponent {
     { label: 'Traductor', routerLink: 'traductor' },
     { label: 'Noticias', routerLink: 'noticias' },
     { label: 'Vehículos', routerLink: 'vehiculos' },
+    { label: 'Texto a voz', routerLink: 'texto-a-voz' },
   ];
 }
