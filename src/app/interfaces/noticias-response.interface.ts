@@ -1,16 +1,20 @@
 export interface NoticiasResponse {
   status: string;
-  request_id: string;
-  data: Noticia[];
+  items: Noticia[];
 }
 
 export interface Noticia {
-  title?: string;
-  link?: string;
-  photo_url?: string;
-  published_datetime_utc?: Date;
-  source_url?: string;
-  source_logo_url?: null | string;
-  source_favicon_url?: string;
-  sub_articles?: Noticia[];
+  title: string;
+  snippet: string;
+  publisher: string;
+  timestamp: string;
+  newsUrl: string;
+  images: Images;
+  hasSubnews?: boolean;
+  subnews?: Noticia[];
+}
+
+export interface Images {
+  thumbnail: string;
+  thumbnailProxied: string;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NoticiasService } from '../../services/noticias.service';
-import { Noticia } from '../../interfaces/noticias-response.interface';
 import { DatePipe } from '@angular/common';
+import { Noticia } from '../../interfaces/noticias-response.interface';
 
 @Component({
   selector: 'app-portal-noticias',
@@ -24,7 +24,7 @@ export class PortalNoticiasComponent implements OnInit {
     this.cargando = true;
     this.noticiasService.obtenerUltimasNoticias().subscribe({
       next: (response) => {
-        this.noticias = response.data;
+        this.noticias = response.items;
         this.cargando = false;
       },
       error: (error) => {

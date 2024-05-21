@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { NoticiasResponse } from '../interfaces/noticias-response.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -10,16 +10,15 @@ export class NoticiasService {
   constructor(private http: HttpClient) {}
 
   obtenerUltimasNoticias(): Observable<NoticiasResponse> {
-    const url = 'https://real-time-news-data.p.rapidapi.com/top-headlines';
+    const url = 'https://google-news13.p.rapidapi.com/latest';
 
     const headers = new HttpHeaders({
-      'X-RapidAPI-Key': 'd5958d7e67mshed5cdfa08c6a56bp14686bjsn051dc6ddbe7a',
-      'X-RapidAPI-Host': 'real-time-news-data.p.rapidapi.com',
+      'X-RapidAPI-Key': 'c0de160164mshea8f547cd603703p1e9558jsnb62e97ad5ec6',
+      'X-RapidAPI-Host': 'google-news13.p.rapidapi.com',
     });
 
     const params = {
-      country: 'AR',
-      lang: 'es-419',
+      lr: 'es-AR',
     };
 
     return this.http.get<NoticiasResponse>(url, { headers, params });

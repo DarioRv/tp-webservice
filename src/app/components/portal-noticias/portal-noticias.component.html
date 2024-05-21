@@ -15,26 +15,34 @@
     class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gap-3 justify-content-center"
   >
     @for (noticia of noticias; track $index) {
-    <article class="bg-body-tertiary p-2 rounded">
-      <div class="d-flex justify-content-center mb-3">
+    <article
+      class="bg-body-tertiary p-2 rounded d-flex flex-column justify-content-between"
+    >
+      <div>
         <img
-          class="img-fluid rounded"
-          [src]="noticia.photo_url"
+          class="img-fluid rounded ratio ratio-16x9 mb-3"
+          [src]="noticia.images.thumbnailProxied"
           [alt]="noticia.title"
         />
-      </div>
-      <div class="p-2 mb-3">
-        <img [src]="noticia.source_logo_url" width="50px" />
-      </div>
-      <h5 class="">{{ noticia.title }}</h5>
-      <!-- <p>{{ noticia.snippet }}</p> -->
+        <h5 class="">{{ noticia.title }}</h5>
 
-      <!-- <p class="text-muted">Publicado por: {{ noticia.publisher }}</p> -->
-      <p class="text-muted fw-bold mt-auto">
-        Publicado el:
-        {{ noticia.published_datetime_utc | date : "dd/MM/yyyy HH:mm" }}
-      </p>
-      <a class="btn btn-outline-primary" [href]="noticia.link">Ver más</a>
+        <p class="text-muted">
+          Publicado por
+          <span class="bg-body-secondary px-2 fw-bold rounded">{{
+            noticia.publisher
+          }}</span>
+        </p>
+
+        <p>{{ noticia.snippet }}</p>
+      </div>
+
+      <footer class="mt-auto">
+        <p class="text-muted fw-bold mt-auto">
+          Publicado el
+          {{ noticia.timestamp | date : "dd/MM/yyyy" }}
+        </p>
+        <a class="" [href]="noticia.newsUrl">Leer árticulo completo</a>
+      </footer>
     </article>
     }
   </div>
