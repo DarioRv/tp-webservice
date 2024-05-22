@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TraduccionRequest } from '../../models/traduccion-request.model';
 import { FormsModule } from '@angular/forms';
 import { GoogleTranslatorService } from '../../services/google-translator.service';
+import { Language } from '../../interfaces/language.interface';
 
 @Component({
   selector: 'app-traductor',
@@ -14,6 +15,7 @@ export class TraductorComponent {
   traduccionRequest: TraduccionRequest;
   resultado?: string;
   cargando = false;
+  lenguajesDisponibles: Language[] = this.traductorService.lenguajesDisponibles;
 
   constructor(private traductorService: GoogleTranslatorService) {
     this.traduccionRequest = new TraduccionRequest();
@@ -25,8 +27,6 @@ export class TraductorComponent {
       return;
     }
 
-    // console.log(this.traduccionRequest);
-
     this.traducir(this.traduccionRequest);
   }
 
@@ -34,7 +34,6 @@ export class TraductorComponent {
     this.cargando = true;
     this.traductorService.traducir(traduccionRequest).subscribe({
       next: (traduccion) => {
-        // console.log(traduccion.data.translations);
         this.resultado = traduccion.data.translations[0].translatedText;
         this.cargando = false;
       },

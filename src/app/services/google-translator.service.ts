@@ -3,12 +3,24 @@ import { TraduccionRequest } from '../models/traduccion-request.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TraduccionResponse } from '../models/traduccion-response.model';
+import { Language } from '../interfaces/language.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GoogleTranslatorService {
+  private readonly _avaibleLanguages: Language[] = [
+    { code: 'en', name: 'Ingles' },
+    { code: 'es', name: 'Español' },
+    { code: 'it', name: 'Italiano' },
+    { code: 'fr', name: 'Francés' },
+  ];
+
   constructor(private http: HttpClient) {}
+
+  get lenguajesDisponibles(): Language[] {
+    return this._avaibleLanguages;
+  }
 
   traducir(
     traduccionRequest: TraduccionRequest
