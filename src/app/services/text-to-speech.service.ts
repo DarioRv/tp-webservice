@@ -1,14 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TextToSpeechService {
-  constructor(private http: HttpClient) {}
+  private _historial: string[] = [];
 
-  textToSpeech(text: string): Observable<any> {
+  get historial() {
+    return [...this._historial];
+  }
+
+  constructor(private http: HttpClient) {
+    this.loadFromLocalStorage();
+  }
+
+  saveTextToHistorial(item: string) {
+    this._historial.push(item);
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('historial', JSON.stringify(this._historial));
+  }
+
+  loadFromLocalStorage() {
+    const historial = localStorage.getItem('historial');
+    if (historial) {
+      this._historial = JSON.parse(historial);
+    }
+  }
+
+  textToSpeech(text: string): Observable<string> {
     const url = 'https://open-ai-text-to-speech1.p.rapidapi.com/';
     const headers = {
       'X-RapidAPI-Key': 'd5958d7e67mshed5cdfa08c6a56bp14686bjsn051dc6ddbe7a',
@@ -21,10 +44,13 @@ export class TextToSpeechService {
       voice: 'alloy',
     };
 
-    return this.http.post(url, body, { headers, responseType: 'blob' });
-
-    // return of(
-    //   'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3'
-    // ).pipe(delay(2000));
+    return this.http.post(url, body, { headers, responseType: 'blob' }).pipe(
+      map((res) => URL.createObjectURL(res)),
+      tap((res) => {
+        this.saveTextToHistorial(text);
+        this.saveTextToHistorial(res);
+        this.saveToLocalStorage();
+      })
+    );
   }
 }

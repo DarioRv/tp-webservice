@@ -10,17 +10,21 @@ import { CommonModule } from '@angular/common';
   templateUrl: './text-to-speech.component.html',
   styleUrl: './text-to-speech.component.css',
 })
-export class TextToSpeechComponent {
+export class TextToSpeechComponent implements OnInit {
   text: string = '';
   historial: string[] = [];
   cargando: boolean = false;
 
   constructor(private textToSpeechService: TextToSpeechService) {}
 
+  ngOnInit(): void {
+    this.historial = this.textToSpeechService.historial;
+  }
+
   textToSpeech(text: string) {
     this.cargando = true;
     this.textToSpeechService.textToSpeech(text).subscribe((response) => {
-      this.addTextToHistorial(URL.createObjectURL(response));
+      this.addTextToHistorial(response);
       this.cargando = false;
     });
   }
