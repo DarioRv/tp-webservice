@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NoticiasResponse } from '../interfaces/noticias-response.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 

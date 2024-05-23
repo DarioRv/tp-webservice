@@ -1,5 +1,7 @@
 <section>
-  <h1 class="text-center mb-5 text-primary display-3 fw-bold">Modelos</h1>
+  <h1 class="text-center mb-5 text-primary display-3 fw-semibold">
+    Marcas disponibles
+  </h1>
   @if (cargando) {
   <div class="d-flex justify-content-center gap-3 align-items-center">
     <div class="spinner-border text-primary" role="status">
@@ -11,7 +13,7 @@
   <div class="row row-cols-2 row-cols-md-4 gap-3 justify-content-center">
     @for (marca of marcas; track $index) {
     <button
-      class="border rounded fs-1 text-center fw-bold"
+      class="btn btn-outline-primary fs-1"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       (click)="onSelectMarca(marca.id)"
@@ -30,9 +32,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
+            <h3 class="modal-title fs-5 text-primary" id="exampleModalLabel">
               Modelos disponibles de la marca
-            </h1>
+            </h3>
             <button
               type="button"
               class="btn-close"
